@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>経費申請</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+
+<body>
+
+    <script type="text/javascript">
+        //今日の日時を表示
+        window.onload = function () {
+            //今日の日時を表示
+            var date = new Date();
+            var year = date.getFullYear()
+            var month = date.getMonth() + 1
+            var day = date.getDate()
+
+            var toTwoDigits = function (num, digit) {
+                num += ''
+                if (num.length < digit) {
+                    num = '0' + num
+                }
+                return num
+            }
+
+            var yyyy = toTwoDigits(year, 4)
+            var mm = toTwoDigits(month, 2)
+            var dd = toTwoDigits(day, 2)
+            var ymd = yyyy + "-" + mm + "-" + dd;
+            // var ymd = yyyy + "-" + mm;
+
+            document.getElementById("today").value = ymd;
+        }
+    </script>
+
+    <form>
+        <div class="px-6 py-24 sm:py-32 lg:px-8">
+            <div class="pb-12">
+
+                <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">経費申請フォーム</h2>
+                </div>
+
+                <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+
+                    <div class="sm:col-span-4">
+                        <label for="today" class="block text-sm font-medium leading-6 text-gray-900">申請日<span
+                                class="text-red-600"> *</span></label>
+                        <div class="mt-2">
+                            <input type="date" name="date" id="today" required
+                                class="block w-auto rounded-md border-0 px-2.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-4">
+                        <label for="name " class="block text-sm font-medium leading-6 text-gray-900">申請者<span
+                                class="text-red-600"> *</span></label>
+                        <div class="mt-2">
+                            <select id="name " name="name " required
+                                class="block w-auto rounded-md border-0 px-2.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                <option value="" selected hidden>選択してください</option>
+                                <option value="tamon">太聞</option>
+                                <option value="keita">佳汰</option>
+                                <option value="kakeru">翔</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-4">
+                        <label for="category " class="block text-sm font-medium leading-6 text-gray-900">種別<span
+                                class="text-red-600"> *</span></label>
+                        <div class="mt-1">
+                            <select id="category " name="category" required
+                                class="block w-auto rounded-md border-0 px-2.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                <option value="" selected hidden>選択してください</option>
+                                <option value="zairyou">材料費</option>
+                                <option value="kakou">加工費</option>
+                                <option value="souryou">送料</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-4">
+                        <label for="money" class="block text-sm font-semibold leading-6 text-gray-900">金額<span
+                                class="text-red-600"> *</span></label>
+                        <div class="relative mt-2.5">
+                            <div class="mt-2">
+                                <input type="tel" name="money" id="money"
+                                    class="block w-full rounded-md border-0 px-2.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+
+                            <div class="absolute inset-y-0 right-0 flex items-center border-l border-gray-300">
+                                <label for="currency" class="sr-only">通貨</label>
+                                <select id="currency" name="currency"
+                                    class="h-full rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-900 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
+                                    <option>円</option>
+                                    <option>ポンド</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-full">
+                        <label for="division" class="block text-sm font-medium leading-6 text-gray-900">内容<span
+                                class="text-red-600"> *</span></label>
+                        <div class="mt-1">
+                            <input type="text" name="division" id="division" required placeholder="例：チェアの材料費"
+                                class="block w-full rounded-md border-0 px-2.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+
+                    <div class="col-span-full">
+                        <label for="memo" class="block text-sm font-semibold leading-6 text-gray-900">備考</label>
+                        <div class="mt-1">
+                            <textarea name="memo" id="memo" rows="3"
+                                class="block w-full rounded-md border-0 px-2.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-span-full">
+                        <label for="cover-photo"
+                            class="block text-sm font-medium leading-6 text-gray-900">ファイルアップロード</label>
+                        <div
+                            class="mt-1 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                            <div class="text-center">
+                                <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
+                                    aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <div class="mt-4 flex text-sm leading-6 text-gray-600">
+                                    <label for="upload"
+                                        class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-400">
+                                        <span>Upload a file</span>
+                                        <input id="upload" name="upload" type="file" class="sr-only">
+                                    </label>
+                                    <p class="pl-1">or drag and drop</p>
+                                </div>
+                                <!-- <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-x-6">
+                <button type="submit"
+                    class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">送信</button>
+            </div>
+
+        </div>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <script>
+        liff.init({
+            liffId: '2002279590-LJ3V4Xjj'
+        }).catch((err) => {
+            console.log(err);
+        });
+
+        liff.ready.then(() => {
+            if (!liff.isLoggedIn()) {
+                liff.login();
+            }
+            const idToken = liff.getDecodedIDToken();
+            const userId = idToken.sub;
+            $('form').append(`<input type="hidden" name="userId" value="${userId}">`);
+            $('form').append(`<input type="submit" class="mt-4 btn btn-primary" value="送信">`);
+        })
+
+        $('form').submit(function (event) {
+            event.preventDefault();
+            $.post('https://script.google.com/macros/s/AKfycbwbi-jpE9l0bkBlCsKnKSv-2g7s8C7LoD5ZsxFv-i1-GF9y4XrAxJzGcys_j6sNuexy5g/exec', $('form').serialize());
+        });
+    </script>
+
+</body>
+
+</html>
