@@ -2,6 +2,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache">
     <title>筋トレ管理３</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -76,8 +77,8 @@
                 const fukkin  = $('input[name="fukkin"]').val();
                 const haikin  = $('input[name="haikin"]').val();
                 const sukuwat = $('input[name="sukuwat"]').val();
-                const msg = `${name}\n${udetate}\n${fukkin}\n${haikin}\n${sukuwat}`;
-                // const msg = `名前：${name}\n腕立て：${udetate}\n腹筋：${fukkin}\n背筋：${haikin}\nスクワット：${sukuwat}`;
+                // const msg = `${name}\n${udetate}\n${fukkin}\n${haikin}\n${sukuwat}`;
+                const msg = `名前：${name}\n腕立て：${udetate}\n腹筋：${fukkin}\n背筋：${haikin}\nスクワット：${sukuwat}`;
                 sendText(msg);
                 return false;
             });
